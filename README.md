@@ -1,4 +1,5 @@
 # typescript
+타입스크립트를 연습합니다.
 
 ### Version Check
 ```bash=

@@ -37,31 +37,47 @@ tuple = ['hello', 10];
 // tuple = ['hello', 10, 'world', 100]; // Error
 // tuple.push(true); // Error
 
-let tuple2: { key: string, value: number };
+let tuple2: { key: string; value: number };
 tuple2 = { key: '하위', value: 123 };
 // tuple2 = { key: 123, value: '하위' }; // Error
 // tuple2 = { 1: '2' } // Error
 
 // enum - 열거형은 숫자값 집합에 이름을 지정한 것이다.
-enum Color1 {Red, Green, Blue};
+enum Color1 {
+  Red,
+  Green,
+  Blue,
+}
 let c11: Color1 = Color1.Red;
 let c12: Color1 = Color1.Green;
 let c13: Color1 = Color1.Blue;
 console.log(c11, c12, c13); // 0 1 2
 
-enum Color2 {Red = 1, Green, Blue};
+enum Color2 {
+  Red = 1,
+  Green,
+  Blue,
+}
 let c21: Color2 = Color2.Red;
 let c22: Color2 = Color2.Green;
 let c23: Color2 = Color2.Blue;
 console.log(c21, c22, c23); // 1 2 3
 
-enum Color3 {Red = 1, Green = 2, Blue = 4};
+enum Color3 {
+  Red = 1,
+  Green = 2,
+  Blue = 4,
+}
 let c31: Color3 = Color3.Red;
 let c32: Color3 = Color3.Green;
 let c33: Color3 = Color3.Blue;
 console.log(c31, c32, c33); // 1 2 4
 
-enum Color4 {Red, Green = "초록", Blue = "파랑"};
+enum Color4 {
+  Red,
+  Green = '초록',
+  Blue = '파랑',
+}
 // 만일 숫자가 아닌 다른 type을 default로 넣어준다면
 // 해당 원소 이후의 값들은 모두 default를 지정해주어야 함
 let c41: Color4 = Color4.Red;
@@ -136,7 +152,7 @@ let stringAndNumber: string & number;
 let typeTest: Color1 | number | String; // Color1은 enum
 
 // class Person2 타입
-class Person2 {};
+class Person2 {}
 const person2: Person2 = new Person2();
 
 // 타입 추론
@@ -149,3 +165,20 @@ foo3 = 'Hello';
 console.log(typeof foo3); // string
 foo3 = true;
 console.log(typeof foo3); // boolean
+
+const makePrivateVariable = (v: number) => {
+  let value: number = v;
+  return {
+    setValue(val: number): void {
+      value = val;
+    },
+    getValue(): number {
+      return value;
+    },
+  };
+};
+
+const ten = makePrivateVariable(10);
+console.log(ten.getValue());
+ten.setValue(20);
+console.log(ten.getValue());
